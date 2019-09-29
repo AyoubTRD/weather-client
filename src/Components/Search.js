@@ -8,6 +8,7 @@ class Search extends Component {
   };
 
   handleSubmit = e => {
+    e.preventDefault();
     if (this.state.address) {
       this.props.getForecast(this.state.address);
     }

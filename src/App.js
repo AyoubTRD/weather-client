@@ -3,7 +3,8 @@ import Search from "./Components/Search";
 
 class App extends Component {
   state = {
-    data: null
+    data: {},
+    address: ""
   };
 
   getForecast = async query => {
@@ -11,13 +12,21 @@ class App extends Component {
       `https://trd-weather-api.herokuapp.com/getforecast?q=${query}`
     );
     const data = await res.json();
-    this.setState({ data });
+    this.setState({ data, address: query });
   };
 
   render() {
+    const { address, data } = this.state;
+    let message = "";
+    if (data.currently) {
+      message = `In ${address}, It is ${data.currently.temperature}°C. There is ${data.currently.precipPorbability}% chance of rain.`;
+    } else {
+      message = "";
+    }
     return (
       <div>
-        <Search />
+        <Search getForecast={this.getForecast} />
+        <p>{message}</p>
       </div>
     );
   }
