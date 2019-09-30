@@ -19,7 +19,7 @@ class App extends Component {
     const { address, data } = this.state;
     let message = "";
     if (data.currently) {
-      message = `In ${address}, It is ${data.currently.temperature}°C. There is ${data.currently.precipPorbability}% chance of rain.`;
+      message = `In ${address}, It is ${data.currently.temperature}°C. There is ${data.currently.precipProbability}% chance of rain.`;
     } else {
       message = "";
     }
